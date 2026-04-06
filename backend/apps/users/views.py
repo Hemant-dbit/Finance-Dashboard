@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from apps.core.permissions import IsAdmin
 from .models import User
 from .serializers import UserSerializer, RegisterSerializer, UpdateRoleSerializer
+from drf_spectacular.utils import extend_schema
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,6 +24,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return UpdateRoleSerializer
         return UserSerializer
 
+    @extend_schema(tags=["Authentication"])
     @action(detail=False, methods=["post"], url_path="register")
     def register(self, request):
         """POST /api/v1/users/register/ — public endpoint."""

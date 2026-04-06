@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     "apps.users",
     "apps.transactions",
     "apps.analytics",
+
+    # API DOCS
+    "drf_spectacular",
 ]
 
 
@@ -152,6 +155,7 @@ REST_FRAMEWORK = {
         "user": "100/day",
         "anon": "20/day",
     },
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 # ========================
@@ -172,3 +176,15 @@ SIMPLE_JWT = {
 # DEFAULT PK
 # ========================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ========================
+# SPECTACULAR SETTINGS
+# ========================
+SPECTACULAR_SETTINGS = {
+    "TITLE": "My API",
+
+    # THIS CONTROLS ORDER OF SECTIONS
+    "TAGS": [
+        {"name": "Authentication", "description": "Login/Register APIs"},
+    ],
+}
